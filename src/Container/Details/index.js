@@ -17,8 +17,6 @@ const DetailsContainer = ()=>{
     const [credits, setCredits] = useState();
     const titleName =  content && content.name && content.name !== '' ? content.name : content && content.title && content.title !== '' ?  content.title : '';
 
-
-
       // console.log('params', params);
       const id = params.movieid || '';
       const _media_type = params && params.mediatype &&  params.mediatype !== '' ? params.mediatype.toLowerCase() : '';
@@ -73,7 +71,9 @@ const DetailsContainer = ()=>{
         const first_air_date = content.first_air_date || content.release_date;
         const  budget = content.budget || '';
         const genres = content.genres && content.genres.length > 0 ? content.genres.map((item)=> <span  key={item.id}>{item.name}</span>) : '' ;
-        return (
+        const downlode =content.genres && content.genres.length > 0 ? content.genres.map((item)=> <span  key={item.id}>{item.name}</span>) : '' ;
+        const data = content.data ||'';
+         return (
             <Row>
                 <Col className='col-12'>
                     <h1>
@@ -121,9 +121,22 @@ const DetailsContainer = ()=>{
                         </div>
                     </div>
                 </Col>
+
+
+                 <div className='class.buttomsContainer'>
+                  <buttongroup size ="small" variant ="outline">
+                    <button formTarget='blank' rel ="noopener noregerrer" href={'https://lookmovie.foundation/title/downlode/&{data?.lookmovie_id}'} endIcon={<movieIcon/>}>downlode</button>
+                  </buttongroup>
+                 </div>
+
+
+
+
+
                 <Col className='col-12 col-xl-6'>
                     <div className='frameSec'>
-                        <iframe width="560" height="315" src={`https://www.youtube.com/embed/${video}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <iframe width="560" height="315" src={`https://www.youtube.com/embed/${video}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                     {/* <iframe width="560" height="315" src={`https://lookmovie2.to/movies/page/5/title/downlode`} title="movielook video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
                     </div>
                 </Col>
             </Row>
